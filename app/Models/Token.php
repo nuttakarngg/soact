@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Clubs extends Model
+class Token extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','description','facebook','phone','vdo','faction','open'];
+    use HasFactory;
+    protected $fillable = ['token','used','club_id','student_id','stdid'];
     protected $primaryKey = 'id';
     public $timestamps = false;
-    public $table = 'clubs';
-    protected $casts = [
-        'open' => 'boolean'
-    ];
+    public $table = 'token';
+
 }

@@ -22,7 +22,8 @@ class ClubsSeeder extends Seeder
                 "facebook"=>"facebook.com/บาส",
                 "phone"=>"0123456789",
                 "vdo"=>"youtube.com/บาส",
-                "faction"=>"ฝ่ายกีฬา"
+                "faction"=>"ฝ่ายกีฬา",
+                "open"=>true
             ],
             [
                 "name"=>"ชมรมสันทนาการ",
@@ -30,7 +31,8 @@ class ClubsSeeder extends Seeder
                 "facebook"=>"facebook.com/สันทนาการ",
                 "phone"=>"0123456789",
                 "vdo"=>"youtube.com/สันทนาการ",
-                "faction"=>"ฝ่ายนักศึกษาสัมพันธ์"
+                "faction"=>"ฝ่ายนักศึกษาสัมพันธ์",
+                'open'=>false
         ]
         ]);
     }

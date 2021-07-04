@@ -15,6 +15,9 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany(Answer::class)->inRandomOrder();
+        return $this->hasMany(Answer::class);
+    }
+    public function clubs(){
+        return $this->belongsTo(Clubs::class,'club_id');
     }
 }

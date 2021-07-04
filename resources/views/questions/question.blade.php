@@ -15,7 +15,6 @@
                 </div>
                 <div class="modal-body form-sample">
                     @csrf
-
                     <input hidden type="text" class="form-control" name="club_id" value="{{ $club_id }}">
 
                     <div class="form-group">
@@ -74,7 +73,6 @@
                                 <th> คำตอบ 3 </th>
                                 <th> คำตอบ 4 </th>
                                 <th> ที่ถูกต้อง </th>
-                                <th> แสดง </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,7 +103,6 @@
                                         <td> {{ $answer['answer'] }}</td>
                                     @endforeach
                                     <td>{{ $question['answer'] }}</td>
-                                    <td class="text-center"><input type="checkbox" {{ $question['show'] ? 'checked' : '' }}>
                                     </td>
                                 </tr>
                             @endforeach

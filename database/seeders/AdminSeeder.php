@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class AdminSeeder extends Seeder
                 "firstname"=>"ณัฐกานต์",
                 "lastname"=>"สัธนานันต์",
                 "username"=>"superj",
-                "password"=>"password",
+                "password"=>Hash::make("password"),
                 "phone"=>"0123456789",
                 "faction"=>"อดีตสโมสรนักศึกษา",
                 "email"=>"nuttakarngg@gmail.com",
@@ -31,7 +32,7 @@ class AdminSeeder extends Seeder
                 "firstname"=>"เมธิชัย",
                 "lastname"=>"จำไม่ได้",
                 "username"=>"matichai",
-                "password"=>"password",
+                "password"=>Hash::make("password"),
                 "phone"=>"0123456789",
                 "faction"=>"มหาเทพแห่งองค์การนักศึกษา",
                 "email"=>"ไม่รู้@gmail.com",

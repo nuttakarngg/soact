@@ -21,6 +21,7 @@ class CreateClubs extends Migration
             $table->string('phone')->nullable();
             $table->string('vdo')->nullable();
             $table->string('faction')->nullable();
+            $table->boolean('open')->default(true);
         });
     }
 

@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.jqueryui.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -63,20 +65,6 @@
                 </div>
 
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item  dropdown d-none d-md-block">
-                        <a class="nav-link dropdown-toggle" id="reportDropdown" href="#" data-toggle="dropdown"
-                            aria-expanded="false"> Reports </a>
-                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-file-pdf mr-2"></i>PDF </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-file-excel mr-2"></i>Excel </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-file-word mr-2"></i>doc </a>
-                        </div>
-                    </li>
                     <li class="nav-item dropdown d-none d-md-block">
                         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown"
                             aria-expanded="false">
@@ -185,11 +173,45 @@
     <script src="{{ asset('assets/js/misc.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js">
-        < script src = "https://code.jquery.com/jquery-3.6.0.slim.js"
-        integrity = "sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
-        crossorigin = "anonymous" >
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js" --}}
+    {{-- integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
+    {{-- <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+     <script src=" https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js" ></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script> --}}
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    {{-- <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script> --}}
+    {{-- <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script> --}}
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        "extend": "excel",
+                        "text": "Export as Excel",
+                        "className": "btn btn-green",
+                        "charset": "utf-8",
+                        "bom": "true",
+                        init: function(api, node, config) {
+                            $(node).removeClass("btn-default");
+                        }
+                    }]
+            });
+        });
     </script>
     @yield('script')
     <!-- End custom js for this page -->

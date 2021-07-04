@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -92,7 +93,7 @@ class AdminController extends Controller
         $admin->firstname = $request->firstname;
         $admin->lastname = $request->lastname;
         $admin->username = $request->username;
-        $admin->password = $request->password;
+        $admin->password = Hash::make($request->password);
         $admin->faction = $request->faction;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
@@ -115,6 +116,9 @@ class AdminController extends Controller
         //
 
         $admin = Admin::find($id);
+        if($admin->role==0){
+            return redirect()->route('admin.index')->with(['result'=>[0],'text'=>'ไม่สามารถลบ Root Admin ได้']);
+        }
         if($admin->delete()){
             $error = [1,'ลบผู้ใช้สำเร็จ'];
         }else{

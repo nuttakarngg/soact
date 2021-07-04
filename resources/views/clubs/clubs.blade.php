@@ -94,7 +94,10 @@
                                             <button  class="btn btn-warning"><i
                                                 class="mdi mdi-lead-pencil"></i></button>
                                         </form>
-
+                                        <form method="GET" action="{{ route('list-answered', ['club' => $club->id]) }}"  class="d-inline">
+                                            <button  class="btn btn-success"><i
+                                                class="mdi mdi-file-find"></i></button>
+                                        </form>
                                     </td>
                                     <td>{{ $club->name }}</td>
                                     <td class="text-wrap" style="line-height: 20px">{{ $club->description }}</td>
@@ -102,7 +105,6 @@
                                     <td>{{ $club->phone }}</td>
                                     <td>{{ $club->vdo }}</td>
                                     <td>{{ $club->faction }}</td>
-
                                 </tr>
                             @endforeach
                         </tbody>

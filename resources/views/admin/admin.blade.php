@@ -53,7 +53,7 @@
         </div>
     </form>
     @if (session('result'))
-        <div class="alert alert-{{ session('result') == 1 ? 'success' : 'danger' }}" role="alert">
+        <div class="alert alert-{{ session('result') === 1 ? 'success' : 'danger' }}" role="alert">
             {{ session('text') }}
         </div>
     @endif

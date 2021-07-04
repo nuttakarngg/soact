@@ -73,8 +73,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         //
-        $questions = Question::where('club_id',$id)->with('answers')->get()->toArray();
-        shuffle($questions);
+        $questions = Question::where('club_id',$id)->with('answers')->get();
+
         return view('questions.question',['questions'=>$questions,'club_id'=>$id]);
     }
 

@@ -89,18 +89,26 @@ class ClubsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request->exists(['open']));
+        // dd($request->open);
         $club = Clubs::find($id);
-        $club->name = $request->name;
-        $club->description = $request->description;
-        $club->facebook = $request->facebook;
-        $club->phone = $request->phone;
-        $club->vdo = $request->vdo;
-        $club->faction = $request->faction;
-
+        $club->name = $request->name ?? $club->name;
+        $club->description = $request->description ?? $club->description;
+        $club->facebook = $request->facebook ?? $club->facebook ;
+        $club->phone = $request->phone ?? $club->phone;
+        $club->vdo = $request->vdo ?? $club->vdo ;
+        $club->faction = $request->faction ?? $club->faction ;
+        $club->open = $request->has('open');
+        // dd($club);
+        // dd($request->has('open'));
         if($club->update()){
             $error = [1,'แก้ไขรมสำเร็จ'];
         }else{
             $error = [0,'เกิดข้อผิดพลาดบางอย่าง โปรดติดต่อแอดมิน'];
+        }
+
+        if($request->refresh){
+            return redirect()->route('question.index');
         }
         return redirect()->route('clubs.index')->with(['result'=>$error[0],'text'=>$error[1]]);
     }
