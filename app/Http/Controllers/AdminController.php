@@ -39,11 +39,15 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         //
+        $admin = Admin::Where('username',$request->username)->first();
+        if($admin){
+            return redirect()->route('admin.index')->with(['result'=>[0],'text'=>'มีผู้ใช้อยู่แล้ว']);
+        }
         $admin = new Admin();
         $admin->firstname = $request->firstname;
         $admin->lastname = $request->lastname;
         $admin->username = $request->username;
-        $admin->password = $request->password;
+        $admin->password =  Hash::make( $request->password);
         $admin->faction = $request->faction;
         $admin->email = $request->email;
         $admin->phone = $request->phone;

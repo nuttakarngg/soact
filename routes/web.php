@@ -27,17 +27,47 @@ use Illuminate\Support\Facades\Hash;
 */
 // Route
 Route::middleware('hasLogin')->group(function(){
-    Route::get('/list-answered/{club?}',function($id){
+    Route::get('/list-answered/{club?}',function(Request $request,$id){
         $feedback = Feedback::with(['students','clubs','questions'])->Where('club_id',$id)->get();
         $club = Clubs::find($id);
-        $score = 0;
         $students = [];
         foreach ($feedback as $item) {
             $students[$item->student_id]['scores'][$item->question_id] = $item->questions->answer === $item->answer;
-            $students[$item->student_id]['score'] = $score;
             $students[$item->student_id]['student'] = $item->students;
         }
         $maxscore =Question::Where('club_id',$id)->selectRaw('count(*) as max')->first();
+        if($request->max!=''){
+            foreach ($students as $id=>$item) {
+                if(array_sum($item['scores'])>$request->max){
+                   unset($students[$id]);
+                }
+            }
+        }
+        if($request->min!=''){
+            foreach ($students as $id=>$item) {
+                if(array_sum($item['scores'])<$request->min){
+                   unset($students[$id]);
+                }
+            }
+        }
+
+        if($request->pass!=null){
+            $pass = $request->pass=='true'?true:false;
+            if(!$pass){
+                foreach ($students as $id=>$item) {
+                    if(array_sum($item['scores'])>$maxscore->max/2){
+                       unset($students[$id]);
+                    }
+                }
+            }else{
+                foreach ($students as $id=>$item) {
+                    if(array_sum($item['scores'])<$maxscore->max/2){
+                       unset($students[$id]);
+                    }
+                }
+            }
+
+        }
         return view('clubs.list-answered',['students'=>$students,'club'=>$club,'maxscore'=>$maxscore->max]);
         // return response()->json($student);
     })->name('list-answered');
@@ -53,7 +83,10 @@ Route::middleware('hasLogin')->group(function(){
     Route::resource('question', QuestionController::class);
 
 });
-
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('dashboard');
+})->name('logout');
 
 Route::get('/successfuly',function(){
     return view('success');
@@ -85,7 +118,7 @@ Route::post('/login',function(Request $request){
     // dd($request->all());
     // dd($admin);
     if(Hash::check($request->password,$admin->password)){
-        // auth()->login($admin);
+       Auth::login($admin);
         $request->session()->regenerate();
     }
     return redirect()->route('dashboard');

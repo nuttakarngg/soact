@@ -17,7 +17,7 @@ class hasLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        // return $next($request);
         if(Auth::user()){
             return $next($request);
         }else{

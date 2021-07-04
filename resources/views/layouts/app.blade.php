@@ -69,14 +69,14 @@
                         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown"
                             aria-expanded="false">
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Henry Klein</p>
+                                <p class="mb-1 text-black">{{Auth::user()->firstname}} {{Auth::user()->lastname}}</p>
                             </div>
                         </a>
                         <div class="dropdown-menu navbar-dropdown dropdown-menu-right p-0 border-0 font-size-sm"
                             aria-labelledby="profileDropdown" data-x-placement="bottom-end">
                             <div class="p-2">
                                 <a class="dropdown-item py-1 d-flex align-items-center justify-content-between"
-                                    href="#">
+                                    href="{{ route('logout') }}">
                                     <span>Log Out</span>
                                     <i class="mdi mdi-logout ml-1"></i>
                                 </a>
@@ -124,7 +124,7 @@
                     <hr>
                     <li class="nav-item sidebar-user-actions">
                         <div class="sidebar-user-menu">
-                            <a href="#" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+                            <a href="{{ route('logout') }}" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
                                 <span class="menu-title">Log Out</span></a>
                         </div>
                     </li>
